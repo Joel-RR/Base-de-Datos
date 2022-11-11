@@ -117,3 +117,9 @@ Se llevan por tanto a cabo todas las tareas de la fase de planificación teniend
 Aquí es donde el equipo se reúne para ensamblar todas las piezas de manera correcta. Sin embargo, al igual que el desarrollo de software tradicional, es muy difícil que todo salga bien, es por eso que deben asistir todos para realizar correcciones de manera inmediata y minimizar el tiempo de desarrollo  para después entrar en fase de pruebas a fondo del videojuego.   
 Los integrantes tendrá su turno para unir su parte al proyecto principal para que al final se observen los resultados y se realice un análisis del producto. 
 
+
+
+
+<p align="left"><img src="https://user-images.githubusercontent.com/107955084/193476504-34163066-49d8-4491-b9ab-f4483c647d8e.jpeg" width="10%" align="right"><img src="https://user-images.githubusercontent.com/107955084/193477064-e11fd08e-bbf9-41d5-a065-75d38b05ce2c.jpg" width="15%" align="center"><img src="https://user-images.githubusercontent.com/107955084/193477951-13aed67f-cab9-47f7-9a3e-a281afda8235.jpg" width="10%     
+ />  
+                     </p>
