@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `videjuego_crj` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `videjuego_crj`;
+-- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
 --
--- Host: localhost    Database: videojuego
+-- Host: localhost    Database: videjuego_crj
 -- ------------------------------------------------------
--- Server version	8.0.28
+-- Server version	8.0.30
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,14 +25,14 @@ DROP TABLE IF EXISTS `jugadores`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `jugadores` (
-  `ID` int unsigned NOT NULL,
+  `ID_jugador` int unsigned NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(45) NOT NULL,
-  `Puntaje` int NOT NULL,
-  `Posicion` int NOT NULL,
-  `Alias` varchar(45) NOT NULL,
+  `nombre_jugador` varchar(45) NOT NULL,
   `Birthdate` datetime DEFAULT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `correo` varchar(45) NOT NULL,
+  `firts_login` varchar(45) NOT NULL,
+  PRIMARY KEY (`ID_jugador`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +41,7 @@ CREATE TABLE `jugadores` (
 
 LOCK TABLES `jugadores` WRITE;
 /*!40000 ALTER TABLE `jugadores` DISABLE KEYS */;
-INSERT INTO `jugadores` VALUES (1,'Player1',5000,1,'Elchicarcas','2002-06-22 00:00:00'),(2,'Player2',1234,5,'Ciber1','2022-03-22 00:00:00'),(3,'Player3',3456,3,'CocoCabra','2012-05-22 00:00:00'),(4,'Player4',2345,4,'Zhongli','2013-06-22 00:00:00'),(5,'Player5',4000,2,'YamiRalph','2004-09-22 00:00:00');
+INSERT INTO `jugadores` VALUES (1,'Player1','Elchicarcas','2002-06-22 00:00:00','Elchicarcas@gmail.com','17/09/2022'),(2,'Player2','Ciber1','2022-03-22 00:00:00','Ciber1@gmail.com','18/09/2022'),(3,'Player3','CocoCabra','2012-05-22 00:00:00','CocoCabra@gmail.com','19/09/2022'),(4,'Player4','Zhongli','2013-06-22 00:00:00','Zhongli@gmail.com','20/09/2022'),(5,'Player5','YamiRalph','2004-09-22 00:00:00','YamiRalph@gmail.com','21/09/2022');
 /*!40000 ALTER TABLE `jugadores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -52,8 +54,9 @@ DROP TABLE IF EXISTS `niveles`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `niveles` (
   `ID` int NOT NULL,
-  `Score` int NOT NULL DEFAULT '1',
-  `Date` datetime NOT NULL,
+  `nombre_Nivel` varchar(45) NOT NULL,
+  `descripcion` varchar(45) NOT NULL,
+  `niveles_jugador` int NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -64,7 +67,7 @@ CREATE TABLE `niveles` (
 
 LOCK TABLES `niveles` WRITE;
 /*!40000 ALTER TABLE `niveles` DISABLE KEYS */;
-INSERT INTO `niveles` VALUES (1,5000,'2024-09-22 00:00:00'),(2,1234,'2024-09-22 00:00:00'),(3,3456,'2024-09-22 00:00:00'),(4,2345,'2024-09-22 00:00:00'),(5,4000,'2024-09-22 00:00:00');
+INSERT INTO `niveles` VALUES (1,'Mundo 1-1','Area de TIC.',0),(2,'Mundo 1-2','Area de Enfermeria.',0),(3,'Mundo 1-3','Area de Mecanica Automotris.',0),(4,'Mundo 1-4','Servicios Escolares.',0),(5,'Mundo 1-5','Bosque Tenebroso',0);
 /*!40000 ALTER TABLE `niveles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -76,11 +79,13 @@ DROP TABLE IF EXISTS `puntaje`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `puntaje` (
-  `ID` int NOT NULL,
-  `Player` int NOT NULL,
-  `Ranking` int NOT NULL,
-  `Update` datetime DEFAULT NULL,
-  PRIMARY KEY (`ID`,`Player`)
+  `id_puntaje` int NOT NULL,
+  `puntajes` int NOT NULL,
+  `partida` int NOT NULL,
+  `posicion` int NOT NULL,
+  PRIMARY KEY (`id_puntaje`),
+  KEY `for_1_idx` (`partida`),
+  CONSTRAINT `for_1` FOREIGN KEY (`partida`) REFERENCES `niveles` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -90,11 +95,12 @@ CREATE TABLE `puntaje` (
 
 LOCK TABLES `puntaje` WRITE;
 /*!40000 ALTER TABLE `puntaje` DISABLE KEYS */;
+INSERT INTO `puntaje` VALUES (1,5000,1,1),(2,4000,2,2),(3,3000,3,3),(4,2000,4,4),(5,1000,5,5);
 /*!40000 ALTER TABLE `puntaje` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Dumping routines for database 'videojuego'
+-- Dumping events for database 'videjuego_crj'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -106,4 +112,5 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-27 23:04:55
+-- Dump completed on 2022-11-14 15:19:00
+
