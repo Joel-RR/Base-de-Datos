@@ -56,9 +56,11 @@ CREATE TABLE `niveles` (
   `ID` int NOT NULL,
   `nombre_Nivel` varchar(45) NOT NULL,
   `descripcion` varchar(45) NOT NULL,
-  `niveles_jugador` int NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `IDSS` int unsigned NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`ID`),
+  KEY `fk_34_idx` (`IDSS`),
+  CONSTRAINT `fk_34` FOREIGN KEY (`IDSS`) REFERENCES `jugadores` (`ID_jugador`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +69,7 @@ CREATE TABLE `niveles` (
 
 LOCK TABLES `niveles` WRITE;
 /*!40000 ALTER TABLE `niveles` DISABLE KEYS */;
-INSERT INTO `niveles` VALUES (1,'Mundo 1-1','Area de TIC.',0),(2,'Mundo 1-2','Area de Enfermeria.',0),(3,'Mundo 1-3','Area de Mecanica Automotris.',0),(4,'Mundo 1-4','Servicios Escolares.',0),(5,'Mundo 1-5','Bosque Tenebroso',0);
+INSERT INTO `niveles` VALUES (1,'Mundo 1-1','Area de TIC.',1),(2,'Mundo 1-2','Area de Enfermeria.',2),(3,'Mundo 1-3','Area de Mecanica Automotris.',3),(4,'Mundo 1-4','Servicios Escolares.',4),(5,'Mundo 1-5','Bosque Tenebroso',5);
 /*!40000 ALTER TABLE `niveles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,10 +100,6 @@ LOCK TABLES `puntaje` WRITE;
 INSERT INTO `puntaje` VALUES (1,5000,1,1),(2,4000,2,2),(3,3000,3,3),(4,2000,4,4),(5,1000,5,5);
 /*!40000 ALTER TABLE `puntaje` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping events for database 'videjuego_crj'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -112,5 +110,5 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-14 15:19:00
+-- Dump completed on 2022-11-14 16:19:23
 
